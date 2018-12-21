@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/index.css">
+    <script src="./js/jquery.js"></script>
+</head>
+
+<body>
+    <div class="pic">
+        <div class="pic1">
+            <img src="./img/1.jpg" alt="">
+            <img src="./img/2.jpg" alt="">
+            <img src="./img/3.jpg" alt="">
+            <img src="./img/4.jpg" alt="">
+            <img src="./img/5.jpg" alt="">
+            <img src="./img/6.jpg" alt="">
+            <img src="./img/7.jpg" alt="">
+            <img src="./img/8.jpg" alt="">
+        </div>
+        <div class="pic2">
+            <img src="./img/9.jpg" alt="">
+            <img src="./img/10.jpg" alt="">
+            <img src="./img/11.jpg" alt="">
+            <img src="./img/12.jpg" alt="">
+            <img src="./img/13.jpg" alt="">
+            <img src="./img/14.jpg" alt="">
+            <img src="./img/15.jpg" alt="">
+            <img src="./img/16.jpg" alt="">
+        </div>
+        <div class="pic3">
+            <img src="./img/17.jpg" alt="">
+            <img src="./img/18.jpg" alt="">
+            <img src="./img/19.jpg" alt="">
+            <img src="./img/20.jpg" alt="">
+            <img src="./img/21.jpg" alt="">
+            <img src="./img/22.jpg" alt="">
+            <img src="./img/23.jpg" alt="">
+            <img src="./img/24.jpg" alt="">
+        </div>
+        <div class="pic4">
+            <img src="./img/25.jpg" alt="">
+            <img src="./img/26.jpg" alt="">
+            <img src="./img/27.jpg" alt="">
+            <img src="./img/28.jpg" alt="">
+            <img src="./img/29.jpg" alt="">
+            <img src="./img/30.jpg" alt="">
+            <img src="./img/31.jpg" alt="">
+            <img src="./img/32.jpg" alt="">
+        </div>
+        <div class="pic5">
+            <img src="./img/33.jpg" alt="">
+            <img src="./img/34.jpg" alt="">
+            <img src="./img/35.jpg" alt="">
+            <img src="./img/36.jpg" alt="">
+            <img src="./img/37.jpg" alt="">
+            <img src="./img/38.jpg" alt="">
+            <img src="./img/39.jpg" alt="">
+            <img src="./img/40.jpg" alt="">
+        </div>
+    </div>
+    <div class="video">
+        <video controls="" autoplay="" name="media"><source src="./因为有你.mp4" type="audio/mpeg"></video>
+    </div>
+</body>
+<script>
+    $(function () {
+        var img1 = $(".pic1 img").length;
+        var img2 = $(".pic2 img").length;
+        var img3 = $(".pic3 img").length;
+        var img4 = $(".pic4 img").length;
+        var img5 = $(".pic5 img").length;
+		// var deg1 = 360 / img1;
+        // var deg2 = 360 / img2;
+        // var deg3 = 360 / img3;
+        // var sq = $(".pic img").width() / 2 * Math.sqrt(3) +150;
+        // var sq1 = 100;
+        // var sq2 = 200;
+        // var sq3 = 300;
+        var roY = 0, roX = -50;
+		var intervalX = 0, intervalY = 0;
+		var play = null;
+        
+        $(".pic1 img").each(function (i) {
+            $(this).css({
+                // <!--translateZ 定义2d旋转沿着z轴-->
+                "transform": "rotateY(" + i * (360 / img1) + "deg) translateZ(100px) rotateX(65deg)"
+            });
+            // 禁止被拖动
+            $(this).attr('ondragstart', 'return false');
+        })
+        $(".pic2 img").each(function (i) {
+            $(this).css({
+                "transform": "rotateY(" + i * (360 / img2) + "deg) translateZ(170px) rotateX(15deg)"
+            });
+            // 禁止被拖动
+            $(this).attr('ondragstart', 'return false');
+        })
+        
+        $(".pic3 img").each(function (i) {
+            $(this).css({
+                "transform": "rotateY(" + i * 360 / img3 + "deg) translateZ(190px) rotateX(0deg)"
+            });
+            // 禁止被拖动
+            $(this).attr('ondragstart', 'return false');
+        })
+        $(".pic4 img").each(function (i) {
+            $(this).css({
+                "transform": "rotateY(" + i * 360 / img4 + "deg) translateZ(170px) rotateX(-20deg)"
+            });
+            // 禁止被拖动
+            $(this).attr('ondragstart', 'return false');
+        })
+        $(".pic5 img").each(function (i) {
+            $(this).css({
+                "transform": "rotateY(" + i * 360 / img5 + "deg) translateZ(-100px) rotateX(60deg)"
+            });
+            // 禁止被拖动
+            $(this).attr('ondragstart', 'return false');
+        })
+
+        $(document).mousedown(function (ev) {
+            var _x = ev.clientX;
+            var _y = ev.clientY;
+            $(this).bind('mousemove', function(ev) {
+                var x = ev.clientX;
+                var y = ev.clientY;
+
+                // 两次坐标的距离
+                intervalX = x - _x;
+                intervalY = y - _y;
+
+                roY = roY + intervalX * 0.2;
+                roX = roX - intervalY * 0.2;                
+
+                $('.pic').css({
+                    transform: 'perspective(500px) rotateX(' + roX + 'deg) rotateY(' + roY + 'deg)'
+                })
+
+                _x = ev.clientX;
+				_y = ev.clientY;
+            })
+        }).mouseup(function () {
+            $(this).unbind('mousemove');
+            play = setInterval(function() {
+                intervalX *= 0.95;
+                intervalY *= 0.95;
+                if(Math.abs(intervalX)<1 && Math.abs(intervalY)<1) {
+                    clearInterval(play);
+                }
+                roY = roY + intervalX * 0.2;
+                roX = roX - intervalY * 0.2;                
+
+                $('.pic').css({
+                    transform: 'perspective(500px) rotateX(' + roX + 'deg) rotateY(' + roY + 'deg)'
+                })
+            }, 30);
+
+            
+        })
+    })
+
+</script>
+
+</html>
