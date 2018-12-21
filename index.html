@@ -63,8 +63,9 @@
             <img src="./img/40.jpg" alt="">
         </div>
     </div>
-    <div class="video">
-        <video controls="" autoplay="" name="media"><source src="./因为有你.mp4" type="audio/mpeg"></video>
+    <button onclick="playVideo(this);">点击播放视频</button>
+    <div class="video" style="display:none;">
+        <video controls="controls" autoplay name="media"><source src="./img/becauseOfYou.mp4" type="video/mp4"></video>
     </div>
 </body>
 <script>
@@ -88,14 +89,14 @@
         $(".pic1 img").each(function (i) {
             $(this).css({
                 // <!--translateZ 定义2d旋转沿着z轴-->
-                "transform": "rotateY(" + i * (360 / img1) + "deg) translateZ(100px) rotateX(65deg)"
+                "transform": "rotateY(" + i * (360 / img1) + "deg) translateZ(50px) rotateX(65deg)"
             });
             // 禁止被拖动
             $(this).attr('ondragstart', 'return false');
         })
         $(".pic2 img").each(function (i) {
             $(this).css({
-                "transform": "rotateY(" + i * (360 / img2) + "deg) translateZ(170px) rotateX(15deg)"
+                "transform": "rotateY(" + i * (360 / img2) + "deg) translateZ(85px) rotateX(15deg)"
             });
             // 禁止被拖动
             $(this).attr('ondragstart', 'return false');
@@ -103,21 +104,21 @@
         
         $(".pic3 img").each(function (i) {
             $(this).css({
-                "transform": "rotateY(" + i * 360 / img3 + "deg) translateZ(190px) rotateX(0deg)"
+                "transform": "rotateY(" + i * 360 / img3 + "deg) translateZ(95px) rotateX(0deg)"
             });
             // 禁止被拖动
             $(this).attr('ondragstart', 'return false');
         })
         $(".pic4 img").each(function (i) {
             $(this).css({
-                "transform": "rotateY(" + i * 360 / img4 + "deg) translateZ(170px) rotateX(-20deg)"
+                "transform": "rotateY(" + i * 360 / img4 + "deg) translateZ(85px) rotateX(-20deg)"
             });
             // 禁止被拖动
             $(this).attr('ondragstart', 'return false');
         })
         $(".pic5 img").each(function (i) {
             $(this).css({
-                "transform": "rotateY(" + i * 360 / img5 + "deg) translateZ(-100px) rotateX(60deg)"
+                "transform": "rotateY(" + i * 360 / img5 + "deg) translateZ(-50px) rotateX(60deg)"
             });
             // 禁止被拖动
             $(this).attr('ondragstart', 'return false');
@@ -163,7 +164,19 @@
             
         })
     })
-
+    function playVideo(ele){
+        console.log($(ele).text());
+        if($(ele).text()=='点击收起视频'){
+            $(ele).text('点击观看视频');
+            $('.pic').css('display','block');
+            $('.video').css('display','none');
+            // document.getElementsByTagName('video').pause();
+        }else{
+            $(ele).text('点击收起视频');
+            $('.pic').css('display','none');
+            $('.video').css('display','block');
+        } 
+    }
 </script>
 
 </html>

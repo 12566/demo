@@ -12,39 +12,39 @@ body{
 }
 
 .pic {
-    width: 50px;
-    height: 75px;
+    width: 10vw;
+    height: 12vw;
     margin: 300px auto;
     transform-style: preserve-3d;
     transform: perspective(500px) rotateX(0deg) rotateY(100deg);
 }
 .pic1{
-    width: 50px;
-    height: 75px;
+    width: 10vw;
+    height: 12vw;
     margin: 5px auto;
     transform-style: preserve-3d;
 }
 .pic2{
-    width: 50px;
-    height: 75px;
+    width: 10vw;
+    height: 12vw;
     margin: 5px auto;
     transform-style: preserve-3d;
 }
 .pic3{
-    width: 50px;
-    height: 75px;
+    width: 10vw;
+    height: 12vw;
     margin: 5px auto;
     transform-style: preserve-3d;
 }
 .pic4{
-    width: 50px;
-    height: 75px;
+    width: 10vw;
+    height: 12vw;
     margin: 5px auto;
     transform-style: preserve-3d;
 }
 .pic5{
-    width: 50px;
-    height: 75px;
+    width: 10vw;
+    height: 12vw;
     margin: 5px auto;
     transform-style: preserve-3d;
 }
@@ -57,12 +57,21 @@ body{
     box-shadow: 0px 0px 10px #fff;
 }
 .video{
-    width: 90vw;
-    height: 50vw;
+    width: 50vw;
+    /*height: 50vw;*/
     position: absolute;
-    top: 5vw;
-    left: 5vw;
+    top: 25vw;
+    left: 25vw;
 }
 video{
     width: 100%;
+}
+button{
+    width: 15vw;
+    height: 5vw;
+    background-color: pink;
+    border-radius: 5px;
+    position: absolute;
+    top: 0;
+    right: 0;
 }
